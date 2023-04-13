@@ -4,10 +4,11 @@ from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 import json 
 
-database_path = os.environ['DATABASE_URL']
-print("database path_______",database_path)
-if database_path.startswith("postgres://"):
-  database_path = database_path.replace("postgres://", "postgresql://", 1)
+database_path="postgresql://postgres:newpassword@localhost:5432/casting_agency"
+# database_path = os.environ['DATABASE_URL']
+# print("database path_______",database_path)
+# if database_path.startswith("postgres://"):
+#   database_path = database_path.replace("postgres://", "postgresql://", 1)
 
 db = SQLAlchemy()
 
@@ -21,7 +22,7 @@ def setup_db(app, database_path=database_path):
     db.app = app
     db.init_app(app)
     db.create_all()
-
+    print("sql___________",app.config["SQLALCHEMY_DATABASE_URI"])
 
 """
 Movie
